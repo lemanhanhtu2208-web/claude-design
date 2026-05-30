@@ -4,6 +4,7 @@ on:
   push:
     branches: ["claude/quirky-mayer-8FQCU"]
     paths:
+      - "trinh-dark/**"
       - "trinh-ca-phe/**"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
@@ -32,10 +33,17 @@ jobs:
         with:
           enablement: true
 
+      - name: Assemble site (dark = main, light = /classic)
+        run: |
+          mkdir -p _site
+          cp -r trinh-dark/* _site/
+          mkdir -p _site/classic
+          cp -r trinh-ca-phe/* _site/classic/
+
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: trinh-ca-phe
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRÌNH CÀ PHÊ — Sống tươi mỗi ngày</title>
+  <meta name="description" content="Trình Cà Phê — cà phê đặc sản Việt Nam từ Đà Nẵng. Fine Robusta TR4, cà phê bơ tươi và những mẻ rang mộc kể chuyện. Tình như xưa, sống tươi mỗi ngày." />
+  <meta name="theme-color" content="#050505" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="TRÌNH CÀ PHÊ — Sống tươi mỗi ngày" />
+  <meta property="og:description" content="Cà phê đặc sản Việt Nam từ Đà Nẵng. Fine Robusta TR4 · Cà phê bơ tươi." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts: Playfair Display + Marcellus (display) · Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Marcellus&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind (prototype). Dark mode = class. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ink:     { DEFAULT: '#050505', soft: '#101312' },
+            moss:    { DEFAULT: '#15251D', deep: '#0C1611' },
+            avocado: { neon: '#B6FF5C', soft: '#A7D86D' },
+            coffee:  '#4A2C1A',
+            cream:   '#F4F1E8',
+            muted:   '#8A8F88',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            marcellus: ['Marcellus', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: { content: '1320px' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- No-JS fallback: hide preloader so content is never blocked -->
+  <noscript><style>#preloader{display:none!important}[data-fx]{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+
+<body class="bg-ink text-cream font-sans antialiased">
+
+  <!-- Skip link -->
+  <a href="#hero" class="skip-link">Bỏ qua tới nội dung</a>
+
+  <!-- ============================================================
+       0 · PRELOADER
+       ============================================================ -->
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__word" data-preloader-word>
+        <span>T</span><span>R</span><span>Ì</span><span>N</span><span>H</span>
+      </div>
+      <span class="preloader__bead" data-preloader-bead></span>
+      <div class="preloader__bar"><span data-preloader-bar></span></div>
+    </div>
+  </div>
+
+  <!-- Ambient neon glow layers (fixed, behind content) -->
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__glow ambient__glow--1"></span>
+    <span class="ambient__glow ambient__glow--2"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <!-- ============================================================
+       1 · HEADER
+       ============================================================ -->
+  <header id="header" class="site-header" data-header>
+    <div class="mx-auto flex max-w-content items-center justify-between px-5 py-4 md:px-10">
+      <a href="#hero" class="logo" aria-label="Trình Cà Phê — về đầu trang">
+        <span class="logo__mark">TRÌNH</span>
+        <span class="logo__sub">CÀ&nbsp;PHÊ</span>
+      </a>
+
+      <nav class="hidden items-center gap-9 text-sm md:flex" aria-label="Điều hướng chính">
+        <a class="nav-link" href="#farm">Farm</a>
+        <a class="nav-link" href="#roastery">Roastery</a>
+        <a class="nav-link" href="#menu">Menu</a>
+        <a class="nav-link" href="#stores">Stores</a>
+        <a class="nav-link" href="#footer">Contact</a>
+      </nav>
+
+      <a href="#stores" class="cta-pill hidden md:inline-flex">
+        <span class="cta-pill__dot"></span> Find a store
+      </a>
+
+      <button id="navToggle" class="nav-toggle md:hidden" aria-label="Mở menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobileNav" class="mobile-nav md:hidden" hidden>
+      <nav class="flex flex-col gap-1 px-6 py-6" aria-label="Menu di động">
+        <a class="mobile-nav__link" href="#farm">Farm</a>
+        <a class="mobile-nav__link" href="#roastery">Roastery</a>
+        <a class="mobile-nav__link" href="#menu">Menu</a>
+        <a class="mobile-nav__link" href="#stores">Stores</a>
+        <a class="mobile-nav__link" href="#footer">Contact</a>
+        <a class="cta-pill mt-4 self-start" href="#stores"><span class="cta-pill__dot"></span> Find a store</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         2 · HERO
+         ============================================================ -->
+    <section id="hero" class="hero" data-hero>
+      <!-- Background layer (zoom-in parallax) -->
+      <div class="hero__bg" data-hero-bg aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2000&q=70"
+          alt="" width="2000" height="1333" loading="eager" fetchpriority="high" />
+        <div class="hero__scrim"></div>
+      </div>
+
+      <!-- Floating coffee beans / orbs (parallax particles) -->
+      <div class="hero__particles" data-particles aria-hidden="true"></div>
+
+      <!-- Content -->
+      <div class="hero__content" data-hero-content>
+        <p class="hero__eyebrow" data-fx="fade">Đà Nẵng · Est. 2018 · Specialty Vietnamese Coffee</p>
+        <h1 class="hero__title">
+          <span class="hero__title-line" data-fx="line">TRÌNH</span>
+          <span class="hero__title-line hero__title-line--accent" data-fx="line">CÀ&nbsp;PHÊ</span>
+        </h1>
+        <p class="hero__slogan" data-fx="fade">Sống tươi mỗi ngày.</p>
+        <p class="hero__lede" data-fx="fade">
+          Cà phê đặc sản Việt Nam, bơ tươi và những mẻ rang kể chuyện Đà Nẵng.
+        </p>
+        <div class="hero__actions" data-fx="fade">
+          <a href="#menu" class="btn btn--solid">Khám phá đặc sản</a>
+          <a href="#farm" class="btn btn--ghost">Từ farm đến ly</a>
+        </div>
+      </div>
+
+      <div class="hero__scrollcue" data-hero-content aria-hidden="true">
+        <span class="hero__scrollcue-track"><span class="hero__scrollcue-dot"></span></span>
+        <span class="hero__scrollcue-label">Scroll</span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3 · FARM — From farm to cup
+         ============================================================ -->
+    <section id="farm" class="farm section">
+      <div class="mx-auto max-w-content px-5 md:px-10">
+        <header class="farm__head">
+          <p class="kicker" data-fx="reveal"><span class="kicker__dot"></span> Trình Coffee Farm</p>
+          <h2 class="display-xl" data-fx="reveal">
+            FROM <span class="text-avocado-neon italic font-display">farm</span><br />TO CUP
+          </h2>
+        </header>
+
+        <div class="farm__grid">
+          <div class="farm__copy" data-reveal-group>
+            <p class="lead" data-fx="reveal">Từ Krông Năng đến Đà Nẵng.</p>
+            <p class="body" data-fx="reveal">
+              Fine Robusta TR4, hái chín đỏ thủ công, sơ chế tự nhiên có lên men yếm khí,
+              rồi rang mộc để giữ trọn vị <em>ngọt thanh, chua nhẹ, hậu vị đậm và sạch</em>.
+            </p>
+
+            <dl class="spec" data-reveal-group>
+              <div class="spec__row" data-fx="reveal"><dt>Giống</dt><dd>Robusta TR4</dd></div>
+              <div class="spec__row" data-fx="reveal"><dt>Vùng trồng</dt><dd>Krông Năng, Đắk Lắk</dd></div>
+              <div class="spec__row" data-fx="reveal"><dt>Độ cao</dt><dd>~ 850m</dd></div>
+              <div class="spec__row" data-fx="reveal"><dt>Thu hái</dt><dd>Chín đỏ thủ công</dd></div>
+              <div class="spec__row" data-fx="reveal"><dt>Sơ chế</dt><dd>Tự nhiên · lên men yếm khí</dd></div>
+              <div class="spec__row" data-fx="reveal"><dt>Rang</dt><dd>Rang mộc</dd></div>
+            </dl>
+          </div>
+
+          <div class="farm__media" data-fx="reveal">
+            <div class="farm__media-frame" data-parallax="0.12">
+              <img
+                src="https://images.unsplash.com/photo-1599639668273-01a8a3a3e6f0?auto=format&fit=crop&w=1000&q=70"
+                alt="Hạt cà phê Fine Robusta chín đỏ được hái thủ công tại Trình Coffee Farm"
+                width="1000" height="1250" loading="lazy" />
+              <span class="farm__media-tag" data-parallax="0.28">850m · Krông Năng</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4 · ROASTERY — Roasted in the city
+         ============================================================ -->
+    <section id="roastery" class="roastery section">
+      <div class="mx-auto max-w-content px-5 md:px-10">
+        <div class="roastery__grid">
+          <div class="roastery__left">
+            <p class="kicker" data-fx="reveal"><span class="kicker__dot"></span> Nhà rang nhỏ thơm phức</p>
+            <h2 class="display-xl" data-fx="reveal">
+              ROASTED<br /><span class="text-avocado-neon italic font-display">in the</span> CITY
+            </h2>
+            <!-- Drum roaster glow visual -->
+            <div class="roaster" data-roaster aria-hidden="true">
+              <span class="roaster__ring"></span>
+              <span class="roaster__core"></span>
+              <span class="roaster__heat"></span>
+            </div>
+          </div>
+
+          <div class="roastery__right" data-reveal-group>
+            <p class="lead" data-fx="reveal">Mỗi mẻ rang là một nhịp thở.</p>
+            <p class="body" data-fx="reveal">
+              Máy móc hiện đại chỉ là một phần. Phần còn lại là cảm giác nghề, kinh nghiệm
+              và sự chăm chút của người rang — giữ lại hương vị tự nhiên nhất của cà phê Việt Nam.
+            </p>
+            <ul class="roastery__list" data-reveal-group>
+              <li data-fx="reveal"><span>01</span> Chọn mẻ — từng lô hạt được nếm thử trước khi lên lửa.</li>
+              <li data-fx="reveal"><span>02</span> Canh lửa — đường rang mộc giữ ngọt thanh, chua nhẹ.</li>
+              <li data-fx="reveal"><span>03</span> Nghỉ hạt — ủ hương để hậu vị đậm và sạch.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5 · MENU — Horizontal scroll
+         ============================================================ -->
+    <section id="menu" class="menu" data-menu>
+      <div class="menu__intro mx-auto max-w-content px-5 md:px-10">
+        <p class="kicker" data-fx="reveal"><span class="kicker__dot"></span> Đặc sản của Trình</p>
+        <h2 class="display-xl" data-fx="reveal">SIGNATURE</h2>
+        <p class="menu__hint md:hidden">← Vuốt ngang để xem →</p>
+      </div>
+
+      <!-- Pinned track (desktop) / native scroll-snap (mobile) -->
+      <div class="menu__viewport" data-menu-viewport>
+        <div class="menu__track" data-menu-track>
+
+          <article class="m-card" style="--tone:#B6FF5C; --tone-ink:#0C1611" data-menu-card>
+            <div class="m-card__media"><img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=900&q=70" alt="Ly cà phê bơ Trình với lớp kem bơ mịn" width="900" height="1100" loading="lazy" /></div>
+            <div class="m-card__body">
+              <span class="m-card__index">01</span>
+              <h3 class="m-card__title">Cà phê bơ</h3>
+              <p class="m-card__desc">Tươi, béo, mát — đặc sản được yêu thích nhất của Trình.</p>
+            </div>
+          </article>
+
+          <article class="m-card" style="--tone:#A7D86D; --tone-ink:#0C1611" data-menu-card>
+            <div class="m-card__media"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=70" alt="Cà phê bơ lắc mát lạnh" width="900" height="1100" loading="lazy" /></div>
+            <div class="m-card__body">
+              <span class="m-card__index">02</span>
+              <h3 class="m-card__title">Cà phê bơ lắc</h3>
+              <p class="m-card__desc">Lớp vị dày, chuyển động trẻ trung, mát lạnh.</p>
+            </div>
+          </article>
+
+          <article class="m-card" style="--tone:#6F4E37; --tone-ink:#F4F1E8" data-menu-card>
+            <div class="m-card__media"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=70" alt="Fine Robusta rang mộc đậm đà" width="900" height="1100" loading="lazy" /></div>
+            <div class="m-card__body">
+              <span class="m-card__index">03</span>
+              <h3 class="m-card__title">Fine Robusta</h3>
+              <p class="m-card__desc">Hạt Robusta TR4, rang mộc, hậu vị ngọt rõ.</p>
+            </div>
+          </article>
+
+          <article class="m-card" style="--tone:#C9A86A; --tone-ink:#0C1611" data-menu-card>
+            <div class="m-card__media"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=70" alt="Cà phê muối lớp kem mặn ngọt" width="900" height="1100" loading="lazy" /></div>
+            <div class="m-card__body">
+              <span class="m-card__index">04</span>
+              <h3 class="m-card__title">Cà phê muối</h3>
+              <p class="m-card__desc">Mặn ngọt cân bằng, béo mềm, sâu vị.</p>
+            </div>
+          </article>
+
+          <article class="m-card" style="--tone:#7FB7C4; --tone-ink:#0C1611" data-menu-card>
+            <div class="m-card__media"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=70&sat=-40" alt="Cold Brew sạch và tươi" width="900" height="1100" loading="lazy" /></div>
+            <div class="m-card__body">
+              <span class="m-card__index">05</span>
+              <h3 class="m-card__title">Cold Brew</h3>
+              <p class="m-card__desc">Sạch, tươi, chua nhẹ, hậu vị dài.</p>
+            </div>
+          </article>
+
+          <article class="m-card" style="--tone:#E7DCC8; --tone-ink:#0C1611" data-menu-card>
+            <div class="m-card__media"><img src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=900&q=70" alt="Cà phê cốt dừa thơm béo" width="900" height="1100" loading="lazy" /></div>
+            <div class="m-card__body">
+              <span class="m-card__index">06</span>
+              <h3 class="m-card__title">Cà phê cốt dừa</h3>
+              <p class="m-card__desc">Thơm béo, gần gũi, đậm chất Việt.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6 · STORES — Stacking cards
+         ============================================================ -->
+    <section id="stores" class="stores section">
+      <div class="mx-auto max-w-content px-5 md:px-10">
+        <header class="stores__head">
+          <p class="kicker" data-fx="reveal"><span class="kicker__dot"></span> Hệ thống cửa hàng</p>
+          <h2 class="display-xl" data-fx="reveal">Ghé Trình,<br /><span class="text-avocado-neon italic font-display">chạm vào</span> Đà Nẵng</h2>
+        </header>
+
+        <div class="stack">
+          <article class="store-card" data-stack-card style="--i:0">
+            <div class="store-card__inner">
+              <div class="store-card__text">
+                <span class="store-card__tag">01 · Flagship · Open 24/7</span>
+                <h3 class="store-card__name">Nguyễn Hữu Thọ</h3>
+                <p class="store-card__concept">Nhà rang nhỏ thơm phức nơi góc phố tươi vui.</p>
+                <p class="store-card__addr">111 Nguyễn Hữu Thọ, Hòa Cường, Đà Nẵng</p>
+                <p class="store-card__hours">Mở cửa · 24/7</p>
+              </div>
+              <div class="store-card__media"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=70" alt="Không gian Trình Cà Phê Nguyễn Hữu Thọ" width="900" height="640" loading="lazy" /></div>
+            </div>
+          </article>
+
+          <article class="store-card" data-stack-card style="--i:1">
+            <div class="store-card__inner">
+              <div class="store-card__text">
+                <span class="store-card__tag">02 · Roastery Garden</span>
+                <h3 class="store-card__name">Phạm Hồng Thái</h3>
+                <p class="store-card__concept">Xưởng rang cà phê tươi trong vườn, giữa phố.</p>
+                <p class="store-card__addr">25 Phạm Hồng Thái, Hải Châu 1, Đà Nẵng</p>
+                <p class="store-card__hours">6:30 AM – 1:00 AM</p>
+              </div>
+              <div class="store-card__media"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=900&q=70" alt="Không gian xưởng rang Trình Phạm Hồng Thái" width="900" height="640" loading="lazy" /></div>
+            </div>
+          </article>
+
+          <article class="store-card" data-stack-card style="--i:2">
+            <div class="store-card__inner">
+              <div class="store-card__text">
+                <span class="store-card__tag">03 · Riverside Garden</span>
+                <h3 class="store-card__name">Hội An</h3>
+                <p class="store-card__concept">Khu vườn thơ mộng bên sông Hoài.</p>
+                <p class="store-card__addr">200 Nguyễn Tri Phương rẽ trái, Hội An</p>
+                <p class="store-card__hours">Theo mùa du lịch</p>
+              </div>
+              <div class="store-card__media"><img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=900&q=70" alt="Trình Cafe &amp; Bistro Hội An bên sông Hoài" width="900" height="640" loading="lazy" /></div>
+            </div>
+          </article>
+
+          <article class="store-card" data-stack-card style="--i:3">
+            <div class="store-card__inner">
+              <div class="store-card__text">
+                <span class="store-card__tag">04 · Riverside Stand</span>
+                <h3 class="store-card__name">Phố đi bộ Bạch Đằng</h3>
+                <p class="store-card__concept">Coffee stand bên sông Hàn, ngắm bình minh và dạo phố đêm.</p>
+                <p class="store-card__addr">Phố đi bộ Bạch Đằng, Phước Ninh, Đà Nẵng</p>
+                <p class="store-card__hours">4:00 AM – 1:00 AM</p>
+              </div>
+              <div class="store-card__media"><img src="https://images.unsplash.com/photo-1442975631115-c4f7b05b8a2c?auto=format&fit=crop&w=900&q=70" alt="Coffee stand Trình bên sông Hàn, phố đi bộ Bạch Đằng" width="900" height="640" loading="lazy" /></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Explore more stores -->
+        <div class="stores__more" data-fx="reveal">
+          <p class="stores__more-label">Explore more stores</p>
+          <ul class="stores__more-list">
+            <li>Chợ Hàn — Cổng Bạch Đằng, Đà Nẵng</li>
+            <li>Bảo Tàng Đà Nẵng — 31 Trần Phú, Hải Châu</li>
+            <li>Trình Coffee Beans &amp; Ice Cream — Tượng Cá Chép Hóa Rồng</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       7 · FOOTER
+       ============================================================ -->
+  <footer id="footer" class="footer">
+    <div class="mx-auto max-w-content px-5 md:px-10">
+      <p class="footer__giant" data-fx="reveal">TRÌNH</p>
+
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <p class="footer__motto">Tình như xưa.<br />Sống tươi mỗi ngày.</p>
+          <p class="footer__desc">Cà phê đặc sản Việt Nam từ Đà Nẵng — Fine Robusta TR4 &amp; cà phê bơ tươi.</p>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__h">Liên hệ</h4>
+          <ul>
+            <li><a class="footer__link" href="tel:+84000000000">Hotline · 0000 000 000</a></li>
+            <li><a class="footer__link" href="mailto:hello@trinhcaphe.vn">hello@trinhcaphe.vn</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__h">Theo dõi</h4>
+          <ul>
+            <li><a class="footer__link" href="#" rel="noopener">Facebook</a></li>
+            <li><a class="footer__link" href="#" rel="noopener">Instagram</a></li>
+            <li><a class="footer__link" href="#" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__h">Giờ mở cửa</h4>
+          <ul>
+            <li class="footer__muted">Nguyễn Hữu Thọ · 24/7</li>
+            <li class="footer__muted">Phạm Hồng Thái · 6:30–01:00</li>
+            <li class="footer__muted">Bạch Đằng · 4:00–01:00</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__base">
+        <p>© 2026 Trình Cà Phê. Mọi quyền được bảo lưu.</p>
+        <p>Đà Nẵng · Hội An · Krông Năng</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="main.js" defer></script>
+</body>
+</html>
