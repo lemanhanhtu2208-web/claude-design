@@ -59,26 +59,22 @@
   <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
     <defs>
       <linearGradient id="trinhBirdGrad" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#B6FF5C" />
-        <stop offset="0.55" stop-color="#6FE6B0" />
-        <stop offset="1" stop-color="#4FD0E0" />
+        <stop offset="0" stop-color="#5CC8FF" />
+        <stop offset="0.55" stop-color="#2BA6E8" />
+        <stop offset="1" stop-color="#1179C4" />
       </linearGradient>
+      <!-- Chim bồ câu xanh đang bay (dựng lại theo logo Trình) -->
       <symbol id="trinh-bird" viewBox="0 0 64 64">
-        <!-- tail -->
-        <polygon points="15,33 2,27 7,37 2,47" fill="url(#trinhBirdGrad)" />
-        <!-- body -->
-        <ellipse cx="29" cy="36" rx="17" ry="13" fill="url(#trinhBirdGrad)" />
-        <!-- head -->
-        <circle cx="43" cy="24" r="10.5" fill="url(#trinhBirdGrad)" />
-        <!-- wing -->
-        <ellipse cx="27" cy="37" rx="10.5" ry="6.5" fill="#0C1611" opacity="0.20" transform="rotate(-18 27 37)" />
-        <!-- belly highlight -->
-        <ellipse cx="25" cy="42" rx="9" ry="5" fill="#F4F1E8" opacity="0.22" />
-        <!-- beak -->
-        <polygon points="52,21 63,24.5 52,28" fill="#4A2C1A" />
-        <!-- eye -->
-        <circle cx="46" cy="22.5" r="2.3" fill="#050505" />
-        <circle cx="46.9" cy="21.7" r="0.8" fill="#F4F1E8" />
+        <!-- cánh dưới (xoè xuống-trái) -->
+        <path d="M30 38 Q23 54 10 57 Q21 45 27 36 Z" fill="url(#trinhBirdGrad)" />
+        <!-- thân + đầu + đuôi chẻ -->
+        <path d="M8 30 Q18 22 31 24 Q47 26 62 40 L53 42 L61 48 Q41 46 30 41 Q16 40 8 33 Z" fill="url(#trinhBirdGrad)" />
+        <!-- cánh trên (xoè lên) -->
+        <path d="M30 25 Q35 6 53 4 Q41 18 35 30 Z" fill="url(#trinhBirdGrad)" />
+        <!-- mỏ -->
+        <path d="M8 30 L1 29 L8 34 Z" fill="url(#trinhBirdGrad)" />
+        <!-- mắt -->
+        <circle cx="14" cy="30" r="1.5" fill="#F4F1E8" />
       </symbol>
     </defs>
   </svg>
