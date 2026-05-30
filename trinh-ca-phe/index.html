@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trình Cà Phê — Sống tươi mỗi ngày</title>
+  <meta name="description" content="Trình Cà Phê — Cà phê bơ đặc sản từ nông trại Trình Farm, Đắk Lắk. Hái chín thủ công, sống tươi mỗi ngày. Hệ thống cửa hàng tại Đà Nẵng & Hội An." />
+
+  <!-- Preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Editorial pairing: Playfair Display (serif) + Marcellus (display serif) + Inter (sans) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Marcellus&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN (prototype). For production: build via Tailwind CLI / PostCSS. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Earth-tone brand palette (Organic Biophilic)
+            forest:  { DEFAULT: '#1B4332', deep: '#102A20', light: '#2D6A4F' },
+            avocado: { DEFAULT: '#52796F', light: '#84A98C' },
+            cream:   { DEFAULT: '#F7F3E9', deep: '#EAE3D2' }, // thịt bơ chín / kem sữa
+            bean:    { DEFAULT: '#3A2618', light: '#6F4E37' }, // hạt cà phê rang
+            clay:    '#C9A227', // điểm xuyết vàng mộc
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            marcellus: ['Marcellus', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: { content: '1280px' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="bg-cream text-forest-deep font-sans antialiased">
+
+  <!-- Skip link (a11y) -->
+  <a href="#main" class="skip-link">Bỏ qua tới nội dung chính</a>
+
+  <!-- ============ NAVBAR ============ -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-[100] transition-all duration-300">
+    <nav class="mx-auto flex max-w-content items-center justify-between px-5 py-4 md:px-10"
+         aria-label="Điều hướng chính">
+      <a href="#hero" class="flex items-center gap-2 text-cream" data-nav-logo>
+        <span class="font-marcellus text-2xl tracking-wide">Trình</span>
+        <span class="hidden text-[0.65rem] uppercase tracking-[0.3em] opacity-80 sm:inline">Cà Phê</span>
+      </a>
+
+      <ul class="hidden items-center gap-8 text-sm font-medium md:flex" data-nav-links>
+        <li><a class="nav-item" href="#about">Trình Farm</a></li>
+        <li><a class="nav-item" href="#menu">Đặc Sản</a></li>
+        <li><a class="nav-item" href="#stores">Cửa Hàng</a></li>
+      </ul>
+
+      <a href="#stores"
+         class="hidden rounded-full border border-cream/60 px-5 py-2 text-sm font-medium text-cream transition-colors duration-200 hover:bg-cream hover:text-forest md:inline-block">
+        Đặt bàn
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button id="menuToggle" class="md:hidden text-cream p-2 -mr-2" aria-label="Mở menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile drawer -->
+    <div id="mobileMenu" class="mobile-menu md:hidden" hidden>
+      <ul class="flex flex-col gap-1 px-6 py-6 text-lg font-marcellus text-cream">
+        <li><a class="block py-3 border-b border-cream/10" href="#about">Trình Farm</a></li>
+        <li><a class="block py-3 border-b border-cream/10" href="#menu">Đặc Sản</a></li>
+        <li><a class="block py-3 border-b border-cream/10" href="#stores">Cửa Hàng</a></li>
+        <li><a class="mt-3 inline-block rounded-full bg-clay px-6 py-2 text-base text-forest-deep" href="#stores">Đặt bàn</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ PHÂN CẢNH 1 — HERO (Zoom-in Parallax) ============ -->
+    <section id="hero" class="hero relative h-[100svh] w-full overflow-hidden bg-forest-deep">
+      <!-- Vòm lá: layer phóng to khi cuộn -->
+      <div class="hero-canopy absolute inset-0 will-change-transform" data-hero-canopy aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2000&q=70"
+             alt="" width="2000" height="1333"
+             class="h-full w-full object-cover" loading="eager" fetchpriority="high" />
+        <div class="absolute inset-0 bg-gradient-to-b from-forest-deep/30 via-forest-deep/20 to-forest-deep/70"></div>
+      </div>
+
+      <!-- Lá nổi nhẹ (parallax foreground, ẩn trên mobile để giảm tải) -->
+      <div class="hero-leaf pointer-events-none absolute -left-10 top-1/4 hidden w-72 opacity-90 will-change-transform md:block" data-hero-leaf="0.4" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=60" alt="" class="w-full" loading="lazy" />
+      </div>
+
+      <!-- Logo + slogan -->
+      <div class="hero-content relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-cream" data-hero-content>
+        <p class="mb-4 text-xs uppercase tracking-[0.45em] text-cream/70">Đắk Lắk · Đà Nẵng · Hội An</p>
+        <h1 class="font-marcellus text-6xl leading-none drop-shadow-sm sm:text-7xl md:text-8xl lg:text-[8.5rem]">
+          Trình <span class="italic font-display">Cà Phê</span>
+        </h1>
+        <p class="mt-6 max-w-md font-display text-xl italic text-cream/90 sm:text-2xl">
+          "Sống tươi mỗi ngày"
+        </p>
+        <a href="#about" class="group mt-10 inline-flex items-center gap-2 rounded-full bg-cream/95 px-7 py-3 text-sm font-medium text-forest transition-transform duration-200 hover:scale-[1.03]">
+          Bước vào khu vườn
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </a>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-cream/70" data-scroll-cue aria-hidden="true">
+        <span class="block h-10 w-6 rounded-full border-2 border-current">
+          <span class="mx-auto mt-2 block h-2 w-1 rounded-full bg-current scroll-cue-dot"></span>
+        </span>
+      </div>
+    </section>
+
+    <!-- ============ PHÂN CẢNH 2 — ABOUT (Trình Farm, fade-in-up + parallax) ============ -->
+    <section id="about" class="relative overflow-hidden bg-cream py-24 md:py-36">
+      <div class="mx-auto grid max-w-content items-center gap-12 px-5 md:grid-cols-2 md:gap-20 md:px-10">
+
+        <!-- Hình ảnh hạt cà phê (trượt chậm hơn — chiều sâu 3D) -->
+        <div class="relative order-2 md:order-1">
+          <div class="about-media overflow-hidden rounded-[2rem] shadow-2xl will-change-transform" data-parallax="0.15">
+            <img src="https://images.unsplash.com/photo-1442550528053-c431ecb55509?auto=format&fit=crop&w=1000&q=70"
+                 alt="Hạt cà phê chín đỏ được hái thủ công tại nông trại Trình Farm"
+                 width="1000" height="1200" class="h-full w-full object-cover" loading="lazy" />
+          </div>
+          <div class="about-badge absolute -bottom-6 -right-4 rounded-2xl bg-forest px-6 py-4 text-cream shadow-xl md:-right-8" data-parallax="0.3">
+            <p class="font-display text-3xl leading-none">100%</p>
+            <p class="mt-1 text-xs uppercase tracking-widest text-cream/80">Hái chín thủ công</p>
+          </div>
+        </div>
+
+        <!-- Nội dung -->
+        <div class="order-1 md:order-2" data-reveal-group>
+          <p class="reveal mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-avocado">Câu chuyện</p>
+          <h2 class="reveal font-display text-4xl leading-tight text-forest md:text-5xl">
+            Từ nông trại Trình Farm,<br/>giữa cao nguyên Đắk Lắk
+          </h2>
+          <p class="reveal mt-6 max-w-prose text-base leading-relaxed text-bean/80">
+            Mỗi hạt cà phê của Trình đều được nuôi dưỡng dưới tán cây bơ xanh mướt, nơi khí hậu cao nguyên
+            ban tặng vị ngọt hậu đặc trưng. Chúng tôi chọn lối <strong class="text-forest">hái chín thủ công</strong> —
+            chỉ thu hái những quả chín mọng nhất, để giữ trọn sự tươi mới trong từng tách.
+          </p>
+          <ul class="reveal mt-8 grid grid-cols-2 gap-y-5 gap-x-4 text-sm">
+            <li class="flex items-start gap-3"><span class="mt-1 leaf-dot"></span><div><p class="font-medium text-forest">Fine Robusta</p><p class="text-bean/60">Chuẩn đặc sản</p></div></li>
+            <li class="flex items-start gap-3"><span class="mt-1 leaf-dot"></span><div><p class="font-medium text-forest">Rang mộc</p><p class="text-bean/60">Giữ nguyên hương</p></div></li>
+            <li class="flex items-start gap-3"><span class="mt-1 leaf-dot"></span><div><p class="font-medium text-forest">Bơ tươi mỗi ngày</p><p class="text-bean/60">Béo ngậy tự nhiên</p></div></li>
+            <li class="flex items-start gap-3"><span class="mt-1 leaf-dot"></span><div><p class="font-medium text-forest">Bền vững</p><p class="text-bean/60">Thuận tự nhiên</p></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PHÂN CẢNH 3 — MENU (Horizontal Scroll) ============ -->
+    <section id="menu" class="menu-section relative bg-forest text-cream" data-menu-section>
+      <!-- Tiêu đề -->
+      <div class="mx-auto max-w-content px-5 pt-24 md:px-10 md:pt-32">
+        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-clay">Thực đơn đặc sản</p>
+        <h2 class="mt-3 max-w-2xl font-display text-4xl leading-tight md:text-6xl">
+          Những món uống làm nên tên Trình
+        </h2>
+        <p class="mt-4 text-sm text-cream/60 md:hidden">← Vuốt ngang để xem thêm →</p>
+      </div>
+
+      <!-- Track ngang: desktop pin & cuộn ngang bằng JS; mobile fallback = cuộn ngang native -->
+      <div class="menu-pin md:mt-16">
+        <div class="menu-track flex gap-6 px-5 pb-24 md:px-10" data-menu-track>
+          <!-- Card template -->
+          <article class="menu-card" style="--tone:#6F4E37" data-menu-card>
+            <div class="menu-card__img"><img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=70" alt="Ly cà phê bơ Trình với lớp bọt béo mịn" loading="lazy" width="800" height="800"/></div>
+            <div class="menu-card__body">
+              <h3 class="font-display text-2xl">Cà Phê Bơ</h3>
+              <p class="menu-card__desc">Đặc sản trứ danh — cà phê rang mộc hoà quyện bơ chín béo ngậy, ngọt hậu tự nhiên.</p>
+              <p class="menu-card__price">45.000đ</p>
+            </div>
+          </article>
+
+          <article class="menu-card" style="--tone:#84A98C" data-menu-card>
+            <div class="menu-card__img"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=70" alt="Cà phê bơ lắc đá mát lạnh" loading="lazy" width="800" height="800"/></div>
+            <div class="menu-card__body">
+              <h3 class="font-display text-2xl">Cà Phê Bơ Lắc</h3>
+              <p class="menu-card__desc">Phiên bản lắc đá mát lạnh, bọt mịn sánh — sảng khoái cho ngày nắng cao nguyên.</p>
+              <p class="menu-card__price">49.000đ</p>
+            </div>
+          </article>
+
+          <article class="menu-card" style="--tone:#3A2618" data-menu-card>
+            <div class="menu-card__img"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=70" alt="Ly Fine Robusta đậm đà" loading="lazy" width="800" height="800"/></div>
+            <div class="menu-card__body">
+              <h3 class="font-display text-2xl">Fine Robusta</h3>
+              <p class="menu-card__desc">Robusta đặc sản chọn lọc, hậu vị mạnh mẽ, hương chocolate đắng thanh.</p>
+              <p class="menu-card__price">39.000đ</p>
+            </div>
+          </article>
+
+          <article class="menu-card" style="--tone:#C9A227" data-menu-card>
+            <div class="menu-card__img"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=70" alt="Cà phê muối lớp kem mặn ngọt" loading="lazy" width="800" height="800"/></div>
+            <div class="menu-card__body">
+              <h3 class="font-display text-2xl">Cà Phê Muối</h3>
+              <p class="menu-card__desc">Lớp kem muối béo mặn phủ trên nền cà phê đậm — cân bằng mặn ngọt khó quên.</p>
+              <p class="menu-card__price">42.000đ</p>
+            </div>
+          </article>
+
+          <article class="menu-card" style="--tone:#52796F" data-menu-card>
+            <div class="menu-card__img"><img src="https://images.unsplash.com/photo-1530373239216-42a6d8b9b4c4?auto=format&fit=crop&w=800&q=70" alt="Bạc xỉu đá ngọt dịu" loading="lazy" width="800" height="800"/></div>
+            <div class="menu-card__body">
+              <h3 class="font-display text-2xl">Bạc Xỉu</h3>
+              <p class="menu-card__desc">Sữa nhiều, cà phê nhẹ — ngọt dịu êm ái, dành cho người mới bắt đầu.</p>
+              <p class="menu-card__price">35.000đ</p>
+            </div>
+          </article>
+
+          <!-- CTA cuối track -->
+          <article class="menu-card menu-card--cta" data-menu-card>
+            <div class="flex h-full flex-col items-start justify-center gap-4 p-8">
+              <h3 class="font-display text-3xl text-forest">Xem toàn bộ thực đơn</h3>
+              <p class="text-sm text-bean/70">Hơn 30 món uống đặc sản đang chờ bạn khám phá tại cửa hàng.</p>
+              <a href="#stores" class="inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-medium text-cream transition-transform duration-200 hover:scale-[1.03]">
+                Tìm cửa hàng gần bạn
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PHÂN CẢNH 4 — STORE LOCATOR (Stacking Cards) ============ -->
+    <section id="stores" class="relative bg-cream py-24 md:py-32">
+      <div class="mx-auto max-w-content px-5 md:px-10">
+        <div class="mb-14 text-center">
+          <p class="text-xs font-semibold uppercase tracking-[0.35em] text-avocado">Hệ thống cửa hàng</p>
+          <h2 class="mt-3 font-display text-4xl text-forest md:text-5xl">Ghé Trình, gần hơn bạn nghĩ</h2>
+        </div>
+
+        <div class="stack-wrap" data-stack-wrap>
+          <!-- Stacking card -->
+          <article class="stack-card" data-stack-card>
+            <div class="grid gap-6 md:grid-cols-[1.1fr_1fr]">
+              <div>
+                <span class="store-tag">Đà Nẵng · Flagship</span>
+                <h3 class="mt-3 font-display text-3xl text-forest">Nguyễn Hữu Thọ</h3>
+                <p class="mt-2 text-bean/80">123 Nguyễn Hữu Thọ, Hải Châu, Đà Nẵng</p>
+                <dl class="store-meta">
+                  <div><dt>Giờ mở cửa</dt><dd>06:30 – 22:30</dd></div>
+                  <div><dt>Hotline</dt><dd><a href="tel:02363888999">0236 3888 999</a></dd></div>
+                </dl>
+              </div>
+              <div class="store-thumb"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=70" alt="Không gian quán Trình Cà Phê Nguyễn Hữu Thọ" loading="lazy" width="800" height="600"/></div>
+            </div>
+          </article>
+
+          <article class="stack-card" data-stack-card>
+            <div class="grid gap-6 md:grid-cols-[1.1fr_1fr]">
+              <div>
+                <span class="store-tag">Đà Nẵng</span>
+                <h3 class="mt-3 font-display text-3xl text-forest">Lê Đình Dương</h3>
+                <p class="mt-2 text-bean/80">45 Lê Đình Dương, Hải Châu, Đà Nẵng</p>
+                <dl class="store-meta">
+                  <div><dt>Giờ mở cửa</dt><dd>07:00 – 22:00</dd></div>
+                  <div><dt>Hotline</dt><dd><a href="tel:02363777888">0236 3777 888</a></dd></div>
+                </dl>
+              </div>
+              <div class="store-thumb"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=800&q=70" alt="Không gian quán Trình Cà Phê Lê Đình Dương" loading="lazy" width="800" height="600"/></div>
+            </div>
+          </article>
+
+          <article class="stack-card" data-stack-card>
+            <div class="grid gap-6 md:grid-cols-[1.1fr_1fr]">
+              <div>
+                <span class="store-tag">Hội An</span>
+                <h3 class="mt-3 font-display text-3xl text-forest">Phố cổ Hội An</h3>
+                <p class="mt-2 text-bean/80">78 Trần Phú, Minh An, Hội An, Quảng Nam</p>
+                <dl class="store-meta">
+                  <div><dt>Giờ mở cửa</dt><dd>06:30 – 23:00</dd></div>
+                  <div><dt>Hotline</dt><dd><a href="tel:02353666777">0235 3666 777</a></dd></div>
+                </dl>
+              </div>
+              <div class="store-thumb"><img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=800&q=70" alt="Không gian quán Trình Cà Phê tại phố cổ Hội An" loading="lazy" width="800" height="600"/></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-forest-deep text-cream/80">
+    <div class="mx-auto max-w-content px-5 py-16 md:px-10">
+      <div class="grid gap-10 md:grid-cols-4">
+        <div class="md:col-span-2">
+          <p class="font-marcellus text-3xl text-cream">Trình <span class="italic font-display">Cà Phê</span></p>
+          <p class="mt-4 max-w-sm text-sm leading-relaxed">Cà phê bơ đặc sản từ nông trại Trình Farm, Đắk Lắk. Hái chín thủ công — sống tươi mỗi ngày.</p>
+        </div>
+        <div>
+          <h4 class="footer-h">Liên hệ</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a class="footer-link" href="tel:02363888999">0236 3888 999</a></li>
+            <li><a class="footer-link" href="mailto:hello@trinhcaphe.vn">hello@trinhcaphe.vn</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-h">Theo dõi</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a class="footer-link" href="#" rel="noopener">Facebook</a></li>
+            <li><a class="footer-link" href="#" rel="noopener">Instagram</a></li>
+            <li><a class="footer-link" href="#" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-6 text-xs text-cream/50 sm:flex-row">
+        <p>© 2026 Trình Cà Phê. Mọi quyền được bảo lưu.</p>
+        <p>Đắk Lắk · Đà Nẵng · Hội An</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP + ScrollTrigger + Lenis (smooth scroll) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

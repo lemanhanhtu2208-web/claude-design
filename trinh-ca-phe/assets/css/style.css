@@ -1,0 +1,190 @@
+/* =========================================================
+   Trình Cà Phê — Immersive Web Design
+   Style: Organic Biophilic | Earth-tone | Editorial typography
+   Tokens & components layered on top of Tailwind CDN.
+   ========================================================= */
+
+:root {
+  /* Brand color tokens (semantic) */
+  --color-forest:       #1B4332;
+  --color-forest-deep:  #102A20;
+  --color-forest-light: #2D6A4F;
+  --color-avocado:      #52796F;
+  --color-avocado-light:#84A98C;
+  --color-cream:        #F7F3E9;
+  --color-cream-deep:   #EAE3D2;
+  --color-bean:         #3A2618;
+  --color-clay:         #C9A227;
+
+  /* Motion tokens (UX rule: motion-consistency) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:  cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast: 180ms;
+  --dur-base: 280ms;
+  --dur-slow: 420ms;
+
+  /* Spacing rhythm (4/8 system) handled via Tailwind; section tiers here */
+  --section-y: clamp(5rem, 10vw, 9rem);
+}
+
+/* ---------- Base ---------- */
+* { -webkit-tap-highlight-color: transparent; }
+body { text-rendering: optimizeLegibility; }
+
+/* Smooth anchor scroll fallback when JS/Lenis is off (UX: anchor smooth scroll) */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---------- Accessibility: skip link & focus ---------- */
+.skip-link {
+  position: absolute; left: 1rem; top: -120%; z-index: 1000;
+  background: var(--color-forest); color: var(--color-cream);
+  padding: 0.75rem 1.25rem; border-radius: 0.75rem; font-size: 0.875rem;
+  transition: top var(--dur-base) var(--ease-out);
+}
+.skip-link:focus { top: 1rem; }
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-clay);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Navbar ---------- */
+#navbar.is-scrolled {
+  background: color-mix(in srgb, var(--color-forest-deep) 92%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.45);
+}
+.nav-item {
+  position: relative; color: var(--color-cream);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.nav-item::after {
+  content: ""; position: absolute; left: 0; bottom: -6px;
+  width: 100%; height: 1.5px; background: var(--color-clay);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.nav-item:hover::after,
+.nav-item.is-active::after { transform: scaleX(1); }
+
+.mobile-menu {
+  background: color-mix(in srgb, var(--color-forest-deep) 97%, transparent);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(247, 243, 233, 0.08);
+  animation: menuDown var(--dur-base) var(--ease-out);
+}
+@keyframes menuDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---------- Hero (Phân cảnh 1) ---------- */
+.hero-canopy { transform: scale(1.05); transform-origin: center; }
+.scroll-cue-dot { animation: cueBounce 1.6s var(--ease-out) infinite; }
+@keyframes cueBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.4; }
+}
+
+/* ---------- About (Phân cảnh 2) — reveal ---------- */
+.leaf-dot {
+  display: inline-block; width: 9px; height: 9px; border-radius: 50% 0 50% 50%;
+  background: var(--color-avocado-light); transform: rotate(45deg);
+  flex: none;
+}
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- Menu (Phân cảnh 3) — horizontal scroll ---------- */
+.menu-card {
+  position: relative; flex: 0 0 auto;
+  width: min(78vw, 340px);
+  background: var(--color-cream);
+  color: var(--color-forest-deep);
+  border-radius: 1.5rem; overflow: hidden;
+  box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.55);
+  transition: transform var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out);
+}
+.menu-card__img { aspect-ratio: 4 / 3; overflow: hidden; }
+.menu-card__img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.menu-card__body { padding: 1.5rem; }
+.menu-card__desc { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.6; color: color-mix(in srgb, var(--color-bean) 80%, transparent); }
+.menu-card__price { margin-top: 1rem; font-size: 1.125rem; font-weight: 600; color: var(--color-forest); }
+
+/* Hover: zoom ảnh + nền đổi sang tone món (UX: state-clarity, scale-feedback) */
+@media (hover: hover) {
+  .menu-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -25px rgba(0,0,0,0.6); }
+  .menu-card:hover .menu-card__img img { transform: scale(1.08); }
+  .menu-card:hover { background: color-mix(in srgb, var(--tone, var(--color-cream)) 16%, var(--color-cream)); }
+}
+.menu-card--cta { background: var(--color-cream-deep); width: min(82vw, 380px); }
+
+/* Mobile fallback: native horizontal scroll-snap (UX: gesture-conflicts, mobile fallback) */
+.menu-track {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.menu-track::-webkit-scrollbar { display: none; }
+.menu-card { scroll-snap-align: center; }
+
+/* Desktop: JS-driven pin + translate (GSAP). Disable native overflow there. */
+@media (min-width: 768px) {
+  .menu-pin { position: relative; }
+  .menu-track.is-pinned { overflow: visible; }
+}
+
+/* ---------- Stores (Phân cảnh 4) — stacking cards ---------- */
+.stack-wrap { position: relative; }
+.stack-card {
+  position: sticky; top: 96px;
+  background: var(--color-cream);
+  border: 1px solid var(--color-cream-deep);
+  border-radius: 1.75rem; padding: 2rem;
+  box-shadow: 0 25px 60px -30px rgba(16, 42, 32, 0.5);
+  margin-bottom: 2rem;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.stack-card + .stack-card { margin-top: 2rem; }
+.store-tag {
+  display: inline-block; font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--color-avocado); background: rgba(132, 169, 140, 0.15);
+  padding: 0.35rem 0.75rem; border-radius: 999px;
+}
+.store-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+.store-meta dt { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: color-mix(in srgb, var(--color-bean) 55%, transparent); }
+.store-meta dd { margin-top: 0.25rem; font-weight: 500; color: var(--color-forest); }
+.store-meta a { color: inherit; text-decoration: none; }
+.store-meta a:hover { color: var(--color-forest-light); }
+.store-thumb { overflow: hidden; border-radius: 1.25rem; aspect-ratio: 4 / 3; }
+.store-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Disable sticky stacking when reduced-motion (treat as simple list) */
+@media (prefers-reduced-motion: reduce) {
+  .stack-card { position: relative; top: auto; }
+}
+
+/* ---------- Footer ---------- */
+.footer-h { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-cream); margin-bottom: 1rem; }
+.footer-link { color: rgba(247,243,233,0.75); text-decoration: none; transition: color var(--dur-fast) var(--ease-out); }
+.footer-link:hover { color: var(--color-clay); }
+
+/* ---------- Reduced motion: neutralize JS transforms gracefully ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  .hero-canopy { transform: scale(1) !important; }
+  .scroll-cue-dot { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
