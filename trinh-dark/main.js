@@ -42,8 +42,12 @@
       },
     });
 
-    tl.to(letters, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.08 })
-      .to(bar, { width: '100%', duration: 0.9, ease: 'power2.inOut' }, '-=0.2')
+    const bird = document.querySelector('[data-preloader-bird]');
+
+    if (bird) tl.to(bird, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.7)' });
+    tl.to(letters, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.08 }, bird ? '-=0.2' : 0);
+    if (bird) tl.to(bird, { rotation: 8, duration: 0.4, yoyo: true, repeat: 1, ease: 'sine.inOut' }, '-=0.3');
+    tl.to(bar, { width: '100%', duration: 0.9, ease: 'power2.inOut' }, '-=0.5')
       .to(pre, { opacity: 0, duration: 0.6, ease: 'power2.out' }, '+=0.15')
       .from('[data-hero-content]', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.3');
   }
@@ -163,6 +167,89 @@
       });
     }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
     items.forEach((el) => io.observe(el));
+  }
+
+  /* ------------------------------------------------------------------
+     4b · FLUID BACKGROUND — animated coffee + butter/avocado blobs
+        Soft metaball-ish drifting orbs on canvas. Light & GPU-friendly:
+        pauses when tab hidden, scales count by device, respects reduce.
+  ------------------------------------------------------------------ */
+  function initFluid() {
+    const canvas = document.querySelector('[data-fluid]');
+    if (!canvas || prefersReduced) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Coffee browns + butter/avocado greens + cream
+    const PALETTE = [
+      [74, 44, 26],    // coffee brown
+      [111, 78, 55],   // roasted bean
+      [182, 255, 92],  // avocado neon (butter pop)
+      [167, 216, 109], // soft avocado
+      [231, 220, 200], // cream/butter
+      [21, 37, 29],    // dark moss
+    ];
+
+    let w, h, dpr, blobs = [], raf = 0, running = true;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function makeBlobs() {
+      const count = isDesktop() ? 8 : 5;
+      blobs = [];
+      for (let i = 0; i < count; i++) {
+        const c = PALETTE[i % PALETTE.length];
+        blobs.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: (isDesktop() ? 230 : 150) * (0.6 + Math.random() * 0.8),
+          vx: (-0.5 + Math.random()) * 0.18,
+          vy: (-0.5 + Math.random()) * 0.18,
+          color: c,
+        });
+      }
+    }
+
+    function draw() {
+      if (!running) return;
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx; b.y += b.vy;
+        // wrap softly around edges
+        if (b.x < -b.r) b.x = w + b.r; else if (b.x > w + b.r) b.x = -b.r;
+        if (b.y < -b.r) b.y = h + b.r; else if (b.y > h + b.r) b.y = -b.r;
+        const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+        const [r, gr, bl] = b.color;
+        g.addColorStop(0, `rgba(${r},${gr},${bl},0.42)`);
+        g.addColorStop(0.6, `rgba(${r},${gr},${bl},0.12)`);
+        g.addColorStop(1, `rgba(${r},${gr},${bl},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      raf = requestAnimationFrame(draw);
+    }
+
+    resize();
+    makeBlobs();
+    draw();
+
+    window.addEventListener('resize', debounce(() => { resize(); makeBlobs(); }, 200));
+    // Pause when tab hidden (perf)
+    document.addEventListener('visibilitychange', () => {
+      running = !document.hidden;
+      if (running && !raf) draw();
+      if (!running) { cancelAnimationFrame(raf); raf = 0; }
+    });
   }
 
   /* ------------------------------------------------------------------
@@ -325,6 +412,7 @@
     initSmoothScroll();
     initAnchors();
     initReveal();
+    initFluid();
     const beans = initParticles();
     runPreloader(() => initScenes(beans));
   }

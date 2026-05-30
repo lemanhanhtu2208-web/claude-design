@@ -98,8 +98,14 @@ body.is-loading { overflow: hidden; height: 100%; }
 
 .section { padding-block: var(--section-y); position: relative; }
 
+/* ---------- BRAND BIRD (logo con chim xanh) ---------- */
+.logo__bird { display: inline-flex; width: 30px; height: 30px; }
+.logo__bird svg { width: 100%; height: 100%; filter: drop-shadow(0 0 8px rgba(182,255,92,0.45)); transition: transform var(--dur-base) var(--ease-out); }
+.logo:hover .logo__bird svg { transform: translateY(-2px) rotate(-6deg); }
+
 /* ---------- 4 · AMBIENT BACKGROUND ---------- */
 .ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.ambient__fluid { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.55; }
 .ambient__glow {
   position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.5;
   will-change: transform;
@@ -120,7 +126,9 @@ main, .site-header, .footer { position: relative; z-index: 1; }
   display: grid; place-items: center;
   background: var(--ink);
 }
-.preloader__inner { display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
+.preloader__inner { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+.preloader__bird { width: 64px; height: 64px; opacity: 0; transform: translateY(10px) scale(0.8); }
+.preloader__bird svg { width: 100%; height: 100%; filter: drop-shadow(0 0 16px rgba(182,255,92,0.55)); }
 .preloader__word {
   display: flex; gap: 0.1em;
   font-family: 'Playfair Display', serif; font-weight: 800;
@@ -360,12 +368,20 @@ main, .site-header, .footer { position: relative; z-index: 1; }
 /* ---------- 13 · FOOTER ---------- */
 .footer { padding-top: clamp(4rem, 9vw, 8rem); padding-bottom: 2.5rem; background: linear-gradient(180deg, transparent, var(--moss-deep)); border-top: var(--hairline); }
 .footer__giant {
+  position: relative;
   font-family: 'Playfair Display', serif; font-weight: 900;
   font-size: clamp(5rem, 24vw, 22rem); line-height: 0.8; letter-spacing: -0.02em;
   text-align: center; color: transparent;
   -webkit-text-stroke: 1px rgba(244,241,232,0.18); text-stroke: 1px rgba(244,241,232,0.18);
   margin-bottom: clamp(2rem, 5vw, 4rem);
 }
+.footer__bird {
+  position: absolute; top: -8%; left: 50%; transform: translateX(-50%);
+  width: clamp(48px, 9vw, 110px); height: clamp(48px, 9vw, 110px);
+  -webkit-text-stroke: 0; animation: birdFloat 5s var(--ease-io) infinite;
+}
+.footer__bird svg { width: 100%; height: 100%; filter: drop-shadow(0 0 22px rgba(182,255,92,0.5)); }
+@keyframes birdFloat { 0%,100% { transform: translateX(-50%) translateY(0) rotate(-3deg); } 50% { transform: translateX(-50%) translateY(-10px) rotate(3deg); } }
 .footer__grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; padding-bottom: 3rem; border-bottom: var(--hairline); }
 .footer__motto { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.2; }
 .footer__desc { color: var(--muted); margin-top: 1rem; max-width: 38ch; line-height: 1.6; }
@@ -408,5 +424,7 @@ main, .site-header, .footer { position: relative; z-index: 1; }
   .hero__bg { transform: scale(1) !important; }
   .store-card { position: relative; top: auto; }
   .preloader { display: none; }
-  .ambient__glow, .roaster__ring, .roaster__heat, .hero__scrollcue-dot { animation: none !important; }
+  .ambient__glow, .roaster__ring, .roaster__heat, .hero__scrollcue-dot, .footer__bird { animation: none !important; }
+  .ambient__fluid { display: none; }
+  .preloader__bird { opacity: 1; transform: none; }
 }

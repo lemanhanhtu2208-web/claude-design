@@ -54,20 +54,53 @@
   <a href="#hero" class="skip-link">Bỏ qua tới nội dung</a>
 
   <!-- ============================================================
+       SVG SPRITE · Logo con chim xanh đặc trưng (placeholder gốc — thay asset thật sau)
+       ============================================================ -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="trinhBirdGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#B6FF5C" />
+        <stop offset="0.55" stop-color="#6FE6B0" />
+        <stop offset="1" stop-color="#4FD0E0" />
+      </linearGradient>
+      <symbol id="trinh-bird" viewBox="0 0 64 64">
+        <!-- tail -->
+        <polygon points="15,33 2,27 7,37 2,47" fill="url(#trinhBirdGrad)" />
+        <!-- body -->
+        <ellipse cx="29" cy="36" rx="17" ry="13" fill="url(#trinhBirdGrad)" />
+        <!-- head -->
+        <circle cx="43" cy="24" r="10.5" fill="url(#trinhBirdGrad)" />
+        <!-- wing -->
+        <ellipse cx="27" cy="37" rx="10.5" ry="6.5" fill="#0C1611" opacity="0.20" transform="rotate(-18 27 37)" />
+        <!-- belly highlight -->
+        <ellipse cx="25" cy="42" rx="9" ry="5" fill="#F4F1E8" opacity="0.22" />
+        <!-- beak -->
+        <polygon points="52,21 63,24.5 52,28" fill="#4A2C1A" />
+        <!-- eye -->
+        <circle cx="46" cy="22.5" r="2.3" fill="#050505" />
+        <circle cx="46.9" cy="21.7" r="0.8" fill="#F4F1E8" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============================================================
        0 · PRELOADER
        ============================================================ -->
   <div id="preloader" class="preloader" aria-hidden="true">
     <div class="preloader__inner">
+      <span class="preloader__bird" data-preloader-bird>
+        <svg viewBox="0 0 64 64"><use href="#trinh-bird"></use></svg>
+      </span>
       <div class="preloader__word" data-preloader-word>
         <span>T</span><span>R</span><span>Ì</span><span>N</span><span>H</span>
       </div>
-      <span class="preloader__bead" data-preloader-bead></span>
       <div class="preloader__bar"><span data-preloader-bar></span></div>
     </div>
   </div>
 
-  <!-- Ambient neon glow layers (fixed, behind content) -->
+  <!-- Ambient neon glow layers + animated coffee/butter blobs (fixed, behind content) -->
   <div class="ambient" aria-hidden="true">
+    <canvas class="ambient__fluid" data-fluid></canvas>
     <span class="ambient__glow ambient__glow--1"></span>
     <span class="ambient__glow ambient__glow--2"></span>
     <span class="ambient__grain"></span>
@@ -79,6 +112,7 @@
   <header id="header" class="site-header" data-header>
     <div class="mx-auto flex max-w-content items-center justify-between px-5 py-4 md:px-10">
       <a href="#hero" class="logo" aria-label="Trình Cà Phê — về đầu trang">
+        <span class="logo__bird"><svg viewBox="0 0 64 64"><use href="#trinh-bird"></use></svg></span>
         <span class="logo__mark">TRÌNH</span>
         <span class="logo__sub">CÀ&nbsp;PHÊ</span>
       </a>
@@ -384,7 +418,10 @@
        ============================================================ -->
   <footer id="footer" class="footer">
     <div class="mx-auto max-w-content px-5 md:px-10">
-      <p class="footer__giant" data-fx="reveal">TRÌNH</p>
+      <p class="footer__giant" data-fx="reveal">
+        <span class="footer__bird"><svg viewBox="0 0 64 64"><use href="#trinh-bird"></use></svg></span>
+        TRÌNH
+      </p>
 
       <div class="footer__grid">
         <div class="footer__brand">
