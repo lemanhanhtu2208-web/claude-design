@@ -1,50 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 460" role="img" aria-label="Trình Cà Phê">
-  <!-- FALLBACK dựng theo nhận diện Trình (chim cyan ngậm cành + TRÌNH + CÀ PHÊ).
-       Tự thay bằng logo-trinh.png chính thức khi file có trong dự án. -->
   <g fill="#29ABE2">
-    <!-- Cánh trên xoè cao về sau (nhiều lớp lông) -->
-    <path d="M250 150
-             C 235 110, 210 86, 168 78
-             C 196 92, 214 116, 224 150
-             C 210 120, 188 100, 158 96
-             C 188 112, 206 138, 214 168
-             C 224 158, 240 152, 250 150 Z"/>
-    <!-- Thân + đầu hướng phải -->
-    <path d="M150 192
-             C 175 168, 210 158, 248 166
-             C 262 150, 286 150, 296 168
-             C 300 156, 286 150, 286 150
-             C 308 150, 322 164, 318 182
-             C 326 184, 330 196, 322 204
-             C 312 212, 296 210, 288 200
-             C 276 220, 252 230, 228 224
-             C 230 236, 222 246, 210 250
-             C 214 236, 210 224, 200 218
-             C 178 224, 156 214, 150 192 Z"/>
-    <!-- Đuôi chẻ về trái -->
-    <path d="M150 192 C 130 192, 110 200, 98 214
-             C 116 212, 134 206, 150 200
-             C 138 210, 130 222, 128 236
-             C 142 226, 154 212, 160 196 Z"/>
-    <!-- Mắt -->
-    <circle cx="300" cy="176" r="3.4" fill="#ffffff"/>
-    <!-- Cành ô liu ngậm ở mỏ -->
-    <path d="M322 196 C 338 206, 350 222, 356 244 C 362 262, 360 280, 352 296"
-          fill="none" stroke="#29ABE2" stroke-width="5" stroke-linecap="round"/>
-    <g fill="#29ABE2">
-      <ellipse cx="346" cy="232" rx="9" ry="4.5" transform="rotate(35 346 232)"/>
-      <ellipse cx="356" cy="252" rx="9" ry="4.5" transform="rotate(50 356 252)"/>
-      <ellipse cx="360" cy="274" rx="9" ry="4.5" transform="rotate(65 360 274)"/>
-      <ellipse cx="356" cy="294" rx="8" ry="4" transform="rotate(80 356 294)"/>
-    </g>
+
+    <!-- Cánh xoè lên trên (đặc trưng logo Trình) -->
+    <path d="M 162 198
+             C 154 170, 162 136, 186 106
+             C 210 76, 245 58, 284 50
+             C 307 42, 333 46, 352 62
+             C 328 73, 302 88, 284 110
+             C 310 88, 337 82, 355 97
+             C 330 115, 303 131, 283 153
+             C 306 136, 329 134, 343 150
+             C 319 167, 292 178, 271 188
+             C 244 193, 207 196, 176 196
+             Z"/>
+
+    <!-- Thân tròn, hướng phải -->
+    <path d="M 176 196
+             C 155 198, 138 208, 140 225
+             C 142 238, 162 244, 186 237
+             C 210 230, 230 215, 248 204
+             C 266 193, 277 184, 273 177
+             C 250 177, 214 183, 192 191
+             Z"/>
+
+    <!-- Đầu tròn -->
+    <circle cx="266" cy="171" r="24"/>
+
+    <!-- Mỏ nhọn hướng phải -->
+    <path d="M 287 164 L 322 160 L 290 182 Z"/>
+
+    <!-- Mắt trắng -->
+    <circle cx="274" cy="165" r="5" fill="white"/>
+
+    <!-- Đuôi chẻ 3 nhánh về trái -->
+    <path d="M 140 225
+             C 120 223, 97 221, 82 238
+             C 102 226, 125 230, 139 226
+             C 119 238, 97 244, 84 263
+             C 104 250, 128 244, 142 237
+             C 124 251, 110 268, 108 288
+             C 124 271, 142 255, 150 241
+             Z"/>
   </g>
 
-  <!-- Wordmark: TRÌNH (sans-serif đậm, vuông như logo) -->
+  <!-- TRÌNH -->
   <text x="230" y="370" text-anchor="middle"
         font-family="'Arial Black', 'Helvetica Neue', Inter, sans-serif"
         font-weight="900" font-size="92" letter-spacing="2" fill="#29ABE2">TRÌNH</text>
 
-  <!-- CÀ PHÊ + hai đường kẻ hai bên -->
+  <!-- CÀ PHÊ + hai đường kẻ -->
   <line x1="150" y1="404" x2="186" y2="404" stroke="#29ABE2" stroke-width="3"/>
   <line x1="274" y1="404" x2="310" y2="404" stroke="#29ABE2" stroke-width="3"/>
   <text x="230" y="412" text-anchor="middle"
