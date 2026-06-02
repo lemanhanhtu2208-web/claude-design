@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Trình Cà Phê">
+  <!-- Fallback logo dựng lại theo nhận diện Trình (bồ câu xanh ngậm cành ô liu).
+       Thay bằng logo-trinh.png chính thức khi có. -->
+  <g fill="#29ABE2">
+    <!-- Chim bồ câu: thân + đầu hướng phải -->
+    <path d="M70 150
+             C 95 120, 130 110, 165 120
+             C 175 110, 190 108, 200 116
+             C 210 110, 222 112, 226 122
+             C 235 120, 244 126, 244 136
+             C 250 140, 250 150, 243 154
+             C 235 160, 222 160, 214 154
+             C 205 168, 188 176, 170 172
+             C 150 188, 120 190, 100 178
+             C 110 176, 120 170, 124 162
+             C 100 168, 78 162, 70 150 Z"/>
+    <!-- Cánh trên xoè cao -->
+    <path d="M150 120
+             C 158 78, 188 52, 222 46
+             C 200 62, 184 86, 176 116
+             C 168 112, 158 114, 150 120 Z"/>
+    <!-- Cánh giữa lông vũ -->
+    <path d="M120 138
+             C 132 108, 158 92, 186 92
+             C 168 104, 154 122, 148 142
+             C 138 134, 128 134, 120 138 Z"/>
+    <!-- Đuôi -->
+    <path d="M70 150 C 58 150, 48 158, 44 168 C 56 166, 66 162, 74 156 Z"/>
+    <!-- Cành ô liu chim ngậm -->
+    <path d="M244 136 C 262 140, 276 150, 286 166
+             M258 144 q 6 -8 16 -6 q -6 6 -16 6
+             M268 152 q 6 -8 16 -6 q -6 6 -16 6
+             M278 162 q 6 -8 16 -6 q -6 6 -16 6"
+          fill="none" stroke="#29ABE2" stroke-width="4" stroke-linecap="round"/>
+    <!-- Mắt -->
+    <circle cx="232" cy="138" r="3" fill="#ffffff"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="150" y="246" text-anchor="middle"
+        font-family="'Playfair Display', Georgia, serif" font-weight="800"
+        font-size="58" letter-spacing="2" fill="#29ABE2">TRÌNH</text>
+  <g fill="#29ABE2">
+    <line x1="96" y1="270" x2="120" y2="270" stroke="#29ABE2" stroke-width="2"/>
+    <line x1="180" y1="270" x2="204" y2="270" stroke="#29ABE2" stroke-width="2"/>
+  </g>
+  <text x="150" y="276" text-anchor="middle"
+        font-family="'Inter', Arial, sans-serif" font-weight="500"
+        font-size="18" letter-spacing="6" fill="#29ABE2">CÀ PHÊ</text>
+</svg>
