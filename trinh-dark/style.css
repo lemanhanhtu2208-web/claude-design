@@ -124,30 +124,31 @@ main, .site-header, .footer { position: relative; z-index: 1; }
 
 /* ---------- 5 · PRELOADER ---------- */
 .preloader {
-  position: fixed; inset: 0; z-index: 3000;
+  position: fixed; inset: 0; z-index: 9999;
   display: grid; place-items: center;
-  background: var(--ink);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(27, 174, 230, 0.14), transparent 26%),
+    #030303;
+  color: #ffffff;
 }
-.preloader__inner { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
-.preloader__bird { display: inline-flex; opacity: 0; transform: translateY(10px) scale(0.8); }
-/* Logo ảnh thật — cân đối ngay phía trên chữ TRÌNH, giữ glow xanh thương hiệu */
-.preloader__logo {
-  width: clamp(110px, 22vw, 170px); height: auto; object-fit: contain;
-  filter: drop-shadow(0 0 18px rgba(56,189,248,0.6));
+.preloader-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+/* Logo chính thức — responsive, không méo, glow rất nhẹ */
+.preloader-logo {
+  width: clamp(160px, 18vw, 300px); height: auto; display: block; object-fit: contain;
+  filter: drop-shadow(0 0 26px rgba(27, 174, 230, 0.22));
 }
-.preloader__bird svg { width: clamp(110px, 22vw, 170px); height: auto; filter: drop-shadow(0 0 16px rgba(56,189,248,0.6)); }
-.preloader__word {
-  display: flex; gap: 0.1em;
-  font-family: 'Playfair Display', serif; font-weight: 800;
-  font-size: clamp(2.6rem, 9vw, 5rem); letter-spacing: 0.04em; color: var(--cream);
+/* Loading line mảnh, tinh tế */
+.preloader-line {
+  width: min(260px, 60vw); height: 1px; margin-top: 2.2rem;
+  background: rgba(255, 255, 255, 0.16); overflow: hidden;
 }
-.preloader__word span { opacity: 0; transform: translateY(0.5em); display: inline-block; }
-.preloader__bead {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--avocado-neon); box-shadow: var(--glow-neon);
+.preloader-line span {
+  display: block; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, #1BAEE6, transparent);
+  transform: translateX(-100%);
+  animation: loadingLine 1.35s ease-in-out infinite;
 }
-.preloader__bar { width: min(220px, 50vw); height: 2px; background: rgba(244,241,232,0.12); overflow: hidden; border-radius: 99px; }
-.preloader__bar span { display: block; height: 100%; width: 0; background: var(--avocado-neon); box-shadow: var(--glow-neon); }
+@keyframes loadingLine { to { transform: translateX(100%); } }
 .preloader.is-done { pointer-events: none; }
 
 /* ---------- 6 · HEADER ---------- */
@@ -455,5 +456,4 @@ main, .site-header, .footer { position: relative; z-index: 1; }
   .preloader { display: none; }
   .ambient__glow, .roaster__ring, .roaster__heat, .footer__bird { animation: none !important; }
   .ambient__fluid { display: none; }
-  .preloader__bird { opacity: 1; transform: none; }
 }

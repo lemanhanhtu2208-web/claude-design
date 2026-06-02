@@ -15,41 +15,36 @@
   let lenis = null;
 
   /* ------------------------------------------------------------------
-     0 · PRELOADER — animate "TRÌNH" letters, then reveal site
+     0 · PRELOADER — show official logo + loading line, then reveal site
   ------------------------------------------------------------------ */
   function runPreloader(onDone) {
     const pre  = document.getElementById('preloader');
-    const word = document.querySelector('[data-preloader-word]');
-    const bar  = document.querySelector('[data-preloader-bar]');
     if (!pre) { onDone(); return; }
 
-    // Reduced motion → skip the show
-    if (prefersReduced || !hasGSAP) {
-      pre.style.display = 'none';
+    const finish = () => {
+      pre.classList.add('is-done');
       document.body.classList.remove('is-loading');
+      pre.style.display = 'none';
       onDone();
-      return;
-    }
+    };
+
+    // Reduced motion (or no GSAP) → skip the show
+    if (prefersReduced || !hasGSAP) { finish(); return; }
 
     document.body.classList.add('is-loading');
-    const letters = word ? word.querySelectorAll('span') : [];
-    const tl = gsap.timeline({
+
+    // Logo + line entrance
+    gsap.from('.preloader-logo', { y: 24, opacity: 0, scale: 0.94, duration: 1, ease: 'power3.out' });
+    gsap.from('.preloader-line', { y: 12, opacity: 0, duration: 0.7, delay: 0.35, ease: 'power3.out' });
+
+    // Fade out whole screen, then reveal hero content
+    gsap.to(pre, {
+      opacity: 0, duration: 0.8, delay: 1.4, ease: 'power2.inOut',
       onComplete: () => {
-        pre.classList.add('is-done');
-        document.body.classList.remove('is-loading');
-        pre.style.display = 'none';
-        onDone();
+        finish();
+        gsap.from('[data-hero-content]', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' });
       },
     });
-
-    const bird = document.querySelector('[data-preloader-bird]');
-
-    if (bird) tl.to(bird, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.7)' });
-    tl.to(letters, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.08 }, bird ? '-=0.2' : 0);
-    if (bird) tl.to(bird, { rotation: 8, duration: 0.4, yoyo: true, repeat: 1, ease: 'sine.inOut' }, '-=0.3');
-    tl.to(bar, { width: '100%', duration: 0.9, ease: 'power2.inOut' }, '-=0.5')
-      .to(pre, { opacity: 0, duration: 0.6, ease: 'power2.out' }, '+=0.15')
-      .from('[data-hero-content]', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.3');
   }
 
   /* ------------------------------------------------------------------
