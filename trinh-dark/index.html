@@ -148,11 +148,17 @@
          2 · HERO
          ============================================================ -->
     <section id="hero" class="hero" data-hero>
-      <!-- Background layer (zoom-in parallax) -->
+      <!-- Background layer: video nền tràn viền (zoom-in parallax) -->
       <div class="hero__bg" data-hero-bg aria-hidden="true">
-        <img
-          src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2000&q=70"
-          alt="" width="2000" height="1333" loading="eager" fetchpriority="high" />
+        <video
+          class="hero__video"
+          src="trinh-bg-video.mp4"
+          autoplay loop muted playsinline
+          preload="auto"
+          poster="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1600&q=60">
+        </video>
+        <!-- Overlay đen mờ để chữ luôn đọc rõ -->
+        <div class="hero__overlay"></div>
         <div class="hero__scrim"></div>
       </div>
 
