@@ -1,31 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Trình Cà Phê">
-  <!-- FALLBACK tạm thời (dựng lại theo nhận diện Trình) — sẽ tự thay bằng
-       logo-trinh.png chính thức khi file được thêm vào dự án. -->
-  <g fill="#1BAEE6">
-    <!-- Chim bồ câu hướng phải, ngậm cành ô liu -->
-    <path d="M70 150 C 95 120, 130 110, 165 120 C 175 110, 190 108, 200 116
-             C 210 110, 222 112, 226 122 C 235 120, 244 126, 244 136
-             C 250 140, 250 150, 243 154 C 235 160, 222 160, 214 154
-             C 205 168, 188 176, 170 172 C 150 188, 120 190, 100 178
-             C 110 176, 120 170, 124 162 C 100 168, 78 162, 70 150 Z"/>
-    <path d="M150 120 C 158 78, 188 52, 222 46 C 200 62, 184 86, 176 116
-             C 168 112, 158 114, 150 120 Z"/>
-    <path d="M120 138 C 132 108, 158 92, 186 92 C 168 104, 154 122, 148 142
-             C 138 134, 128 134, 120 138 Z"/>
-    <path d="M70 150 C 58 150, 48 158, 44 168 C 56 166, 66 162, 74 156 Z"/>
-    <path d="M244 136 C 262 140, 276 150, 286 166
-             M258 144 q 6 -8 16 -6 q -6 6 -16 6
-             M268 152 q 6 -8 16 -6 q -6 6 -16 6
-             M278 162 q 6 -8 16 -6 q -6 6 -16 6"
-          fill="none" stroke="#1BAEE6" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="232" cy="138" r="3" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 460" role="img" aria-label="Trình Cà Phê">
+  <!-- FALLBACK dựng theo nhận diện Trình (chim cyan ngậm cành + TRÌNH + CÀ PHÊ).
+       Tự thay bằng logo-trinh.png chính thức khi file có trong dự án. -->
+  <g fill="#29ABE2">
+    <!-- Cánh trên xoè cao về sau (nhiều lớp lông) -->
+    <path d="M250 150
+             C 235 110, 210 86, 168 78
+             C 196 92, 214 116, 224 150
+             C 210 120, 188 100, 158 96
+             C 188 112, 206 138, 214 168
+             C 224 158, 240 152, 250 150 Z"/>
+    <!-- Thân + đầu hướng phải -->
+    <path d="M150 192
+             C 175 168, 210 158, 248 166
+             C 262 150, 286 150, 296 168
+             C 300 156, 286 150, 286 150
+             C 308 150, 322 164, 318 182
+             C 326 184, 330 196, 322 204
+             C 312 212, 296 210, 288 200
+             C 276 220, 252 230, 228 224
+             C 230 236, 222 246, 210 250
+             C 214 236, 210 224, 200 218
+             C 178 224, 156 214, 150 192 Z"/>
+    <!-- Đuôi chẻ về trái -->
+    <path d="M150 192 C 130 192, 110 200, 98 214
+             C 116 212, 134 206, 150 200
+             C 138 210, 130 222, 128 236
+             C 142 226, 154 212, 160 196 Z"/>
+    <!-- Mắt -->
+    <circle cx="300" cy="176" r="3.4" fill="#ffffff"/>
+    <!-- Cành ô liu ngậm ở mỏ -->
+    <path d="M322 196 C 338 206, 350 222, 356 244 C 362 262, 360 280, 352 296"
+          fill="none" stroke="#29ABE2" stroke-width="5" stroke-linecap="round"/>
+    <g fill="#29ABE2">
+      <ellipse cx="346" cy="232" rx="9" ry="4.5" transform="rotate(35 346 232)"/>
+      <ellipse cx="356" cy="252" rx="9" ry="4.5" transform="rotate(50 356 252)"/>
+      <ellipse cx="360" cy="274" rx="9" ry="4.5" transform="rotate(65 360 274)"/>
+      <ellipse cx="356" cy="294" rx="8" ry="4" transform="rotate(80 356 294)"/>
+    </g>
   </g>
-  <text x="150" y="246" text-anchor="middle"
-        font-family="'Playfair Display', Georgia, serif" font-weight="800"
-        font-size="58" letter-spacing="2" fill="#1BAEE6">TRÌNH</text>
-  <line x1="96" y1="270" x2="120" y2="270" stroke="#1BAEE6" stroke-width="2"/>
-  <line x1="180" y1="270" x2="204" y2="270" stroke="#1BAEE6" stroke-width="2"/>
-  <text x="150" y="276" text-anchor="middle"
-        font-family="'Inter', Arial, sans-serif" font-weight="500"
-        font-size="18" letter-spacing="6" fill="#1BAEE6">CÀ PHÊ</text>
+
+  <!-- Wordmark: TRÌNH (sans-serif đậm, vuông như logo) -->
+  <text x="230" y="370" text-anchor="middle"
+        font-family="'Arial Black', 'Helvetica Neue', Inter, sans-serif"
+        font-weight="900" font-size="92" letter-spacing="2" fill="#29ABE2">TRÌNH</text>
+
+  <!-- CÀ PHÊ + hai đường kẻ hai bên -->
+  <line x1="150" y1="404" x2="186" y2="404" stroke="#29ABE2" stroke-width="3"/>
+  <line x1="274" y1="404" x2="310" y2="404" stroke="#29ABE2" stroke-width="3"/>
+  <text x="230" y="412" text-anchor="middle"
+        font-family="'Helvetica Neue', Inter, Arial, sans-serif"
+        font-weight="600" font-size="26" letter-spacing="8" fill="#29ABE2">CÀ PHÊ</text>
 </svg>
