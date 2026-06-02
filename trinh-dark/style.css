@@ -209,10 +209,10 @@ main, .site-header, .footer { position: relative; z-index: 1; }
   transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast), color var(--dur-fast), box-shadow var(--dur-fast);
   min-height: 48px;
 }
-.btn--solid { background: var(--butter); color: var(--coffee); box-shadow: 0 0 0 rgba(235,217,167,0); }
-.btn--solid:hover { transform: translateY(-2px); background: var(--butter-deep); box-shadow: 0 12px 40px -12px rgba(235,217,167,0.7); }
-.btn--ghost { border: 1px solid rgba(244,241,232,0.25); color: var(--cream); }
-.btn--ghost:hover { border-color: var(--butter); color: var(--butter); transform: translateY(-2px); }
+.btn--solid { background: #F8F5F0; color: #2C1E16; }
+.btn--solid:hover { transform: translateY(-2px); background: #FFFFFF; box-shadow: 0 14px 40px -14px rgba(0,0,0,0.6); }
+.btn--ghost { border: 1px solid rgba(248,245,240,0.6); color: #FFFFFF; }
+.btn--ghost:hover { border-color: #FFFFFF; background: rgba(248,245,240,0.1); transform: translateY(-2px); }
 
 /* ---------- 8 · HERO ---------- */
 .hero { position: relative; height: 100svh; min-height: 600px; overflow: hidden; display: grid; }
@@ -235,26 +235,30 @@ main, .site-header, .footer { position: relative; z-index: 1; }
   box-shadow: 0 0 14px rgba(182,255,92,0.25); opacity: 0.6; will-change: transform;
 }
 
+/* Content: ép xuống đáy màn hình, để trống nửa trên cho logo trong video */
 .hero__content {
-  position: relative; z-index: 2; place-self: center; text-align: center;
-  padding: 0 1.25rem; max-width: 1100px; margin-inline: auto;
+  position: relative; z-index: 2;
+  align-self: end;                 /* đẩy xuống đáy của grid hero */
+  justify-self: center;
+  width: 100%;
+  padding: 0 1.25rem clamp(4rem, 16vh, 9rem);  /* cách đáy ~15-18% vh */
+  text-align: center;
 }
-.hero__title {
-  font-family: 'Playfair Display', serif; font-weight: 800;
-  font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.015em;
-  text-shadow: 0 2px 30px rgba(0,0,0,0.45);
+.hero__panel {
+  max-width: 600px;                /* không tràn viền */
+  margin-inline: auto;
 }
-.hero__title-line { display: block; font-family: 'Playfair Display', serif; font-style: normal; font-weight: 800; }
-.hero__title-line--accent { color: var(--butter); }
-.hero__slogan { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 3vw, 2.2rem); margin-top: 1.5rem; color: var(--cream); text-shadow: 0 2px 18px rgba(0,0,0,0.5); }
-.hero__lede { color: var(--cream); max-width: 40ch; margin: 1rem auto 0; line-height: 1.7; text-shadow: 0 2px 14px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5); }
-.hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; margin-top: 2.4rem; }
-
-.hero__scrollcue { position: absolute; z-index: 2; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.6rem; color: var(--muted); }
-.hero__scrollcue-track { width: 24px; height: 40px; border: 1.5px solid rgba(244,241,232,0.3); border-radius: 99px; display: grid; }
-.hero__scrollcue-dot { width: 4px; height: 8px; border-radius: 99px; background: var(--avocado-neon); justify-self: center; align-self: start; margin-top: 7px; animation: cue 1.6s var(--ease-out) infinite; }
-.hero__scrollcue-label { font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; }
-@keyframes cue { 0%,100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(9px); opacity: 0.3; } }
+.hero__slogan {
+  font-family: 'Playfair Display', serif; font-weight: 600;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem); line-height: 1.15; color: var(--cream);
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+}
+.hero__lede {
+  color: var(--cream); max-width: 46ch; margin: 1.1rem auto 0; line-height: 1.7;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; margin-top: 2.2rem; }
 
 /* ---------- 9 · FARM ---------- */
 .farm__head { margin-bottom: clamp(2.5rem, 6vw, 5rem); }
@@ -430,7 +434,7 @@ main, .site-header, .footer { position: relative; z-index: 1; }
   .hero__bg { transform: scale(1) !important; }
   .store-card { position: relative; top: auto; }
   .preloader { display: none; }
-  .ambient__glow, .roaster__ring, .roaster__heat, .hero__scrollcue-dot, .footer__bird { animation: none !important; }
+  .ambient__glow, .roaster__ring, .roaster__heat, .footer__bird { animation: none !important; }
   .ambient__fluid { display: none; }
   .preloader__bird { opacity: 1; transform: none; }
 }
