@@ -155,9 +155,12 @@ main, .site-header, .footer { position: relative; z-index: 1; }
   position: fixed; inset-inline: 0; top: 0; z-index: 100;
   transition: background var(--dur-base) var(--ease-out), backdrop-filter var(--dur-base);
 }
+/* Mặc định trên Hero: gradient nhẹ từ trên xuống, trong — không kính mờ đục */
+.site-header { background: linear-gradient(to bottom, rgba(0,0,0,0.32), rgba(0,0,0,0)); }
+/* Khi cuộn qua Hero: nền đặc hơn một chút + blur rất nhẹ cho dễ đọc */
 .site-header.is-scrolled {
-  background: rgba(5, 5, 5, 0.55);
-  backdrop-filter: blur(14px) saturate(140%);
+  background: rgba(5, 5, 5, 0.6);
+  backdrop-filter: blur(8px) saturate(120%);
   border-bottom: var(--hairline);
 }
 .site-header.is-hidden { transform: translateY(-100%); transition: transform var(--dur-base) var(--ease-out); }
@@ -223,26 +226,37 @@ main, .site-header, .footer { position: relative; z-index: 1; }
 .hero { position: relative; height: 100svh; min-height: 600px; overflow: hidden; display: grid; }
 .hero__bg { position: absolute; inset: 0; z-index: 0; will-change: transform; transform: scale(1.06); }
 .hero__bg img { width: 100%; height: 100%; object-fit: cover; }
-/* Video nền tràn viền */
-.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-/* Overlay đen mờ giữa video và chữ (opacity 0.4) */
-.hero__overlay { position: absolute; inset: 0; background: #000; opacity: 0.4; }
-.hero__scrim {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(120% 90% at 50% 30%, transparent 30%, rgba(5,5,5,0.55) 75%, var(--ink) 100%),
-    linear-gradient(to bottom, rgba(5,5,5,0.6), rgba(5,5,5,0.35) 40%, var(--ink));
+/* Video nền tràn viền — tăng độ rõ màu (sáng, tương phản, rực hơn) */
+.hero__video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(1.08) contrast(1.12) saturate(1.18);
 }
-.hero__particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+/* Overlay: gradient tinh tế có kiểm soát — KHÔNG phủ đen dày, KHÔNG blur.
+   Trên hơi tối (header đọc được) · giữa sáng (lộ nền) · dưới tối nhẹ (chữ rõ). */
+.hero__overlay {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.10) 35%,
+    rgba(0,0,0,0.18) 62%,
+    rgba(0,0,0,0.55) 100%);
+}
+/* Scrim: chỉ blend nhẹ mép dưới vào section kế tiếp, không làm đục nền */
+.hero__scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to bottom, transparent 78%, var(--ink) 100%);
+}
+.hero__particles { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 .bean {
   position: absolute; border-radius: 50% 50% 48% 52%;
-  background: radial-gradient(circle at 35% 30%, rgba(182,255,92,0.5), rgba(74,44,26,0.85));
-  box-shadow: 0 0 14px rgba(182,255,92,0.25); opacity: 0.6; will-change: transform;
+  background: radial-gradient(circle at 35% 30%, rgba(182,255,92,0.45), rgba(74,44,26,0.8));
+  box-shadow: 0 0 10px rgba(182,255,92,0.18); opacity: 0.5; filter: blur(0.5px);
+  will-change: transform;
 }
 
 /* Content: ép xuống đáy màn hình, để trống nửa trên cho logo trong video */
 .hero__content {
-  position: relative; z-index: 2;
+  position: relative; z-index: 3;
   align-self: end;                 /* đẩy xuống đáy của grid hero */
   justify-self: center;
   width: 100%;
@@ -256,12 +270,12 @@ main, .site-header, .footer { position: relative; z-index: 1; }
 .hero__slogan {
   font-family: 'Playfair Display', serif; font-weight: 600;
   font-size: clamp(1.6rem, 3.4vw, 2.6rem); line-height: 1.15; color: var(--cream);
-  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 4px 30px rgba(0,0,0,0.65), 0 2px 6px rgba(0,0,0,0.5);
 }
 .hero__lede {
   color: var(--cream); max-width: 46ch; margin: 1.1rem auto 0; line-height: 1.7;
   font-size: clamp(1rem, 1.3vw, 1.15rem);
-  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 4px 30px rgba(0,0,0,0.65), 0 2px 6px rgba(0,0,0,0.5);
 }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; margin-top: 2.2rem; }
 
