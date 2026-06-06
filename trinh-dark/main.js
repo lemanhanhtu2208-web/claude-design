@@ -249,6 +249,28 @@
   }
 
   /* ------------------------------------------------------------------
+     8 · STORE TABS — lightweight filter (Tất cả / Đà Nẵng / Hội An / Stand)
+  ------------------------------------------------------------------ */
+  function initStoreTabs() {
+    const tabs = document.querySelector('[data-store-tabs]');
+    if (!tabs) return;
+    const buttons = [...tabs.querySelectorAll('.store-tab')];
+    const items = [...document.querySelectorAll('[data-city]')];
+
+    tabs.addEventListener('click', (e) => {
+      const btn = e.target.closest('.store-tab');
+      if (!btn) return;
+      const filter = btn.dataset.filter;
+      buttons.forEach((b) => b.classList.toggle('is-active', b === btn));
+      items.forEach((el) => {
+        const show = filter === 'all' || el.dataset.city === filter;
+        el.classList.toggle('is-hidden', !show);
+      });
+      if (hasST) ScrollTrigger.refresh();
+    });
+  }
+
+  /* ------------------------------------------------------------------
      Boot
   ------------------------------------------------------------------ */
   function boot() {
@@ -257,6 +279,7 @@
     initAnchors();
     initReveal();
     initNewsletter();
+    initStoreTabs();
     const beans = initParticles();
     runPreloader(() => initScenes(beans));
   }
