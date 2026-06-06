@@ -11,7 +11,7 @@
   window.addEventListener("load", function () {
     var pre = document.getElementById("preloader");
     if (!pre) return;
-    setTimeout(function () { pre.classList.add("is-done"); }, 600);
+    setTimeout(function () { pre.classList.add("is-done"); }, 2000);
   });
 
   /* ---------- Year ---------- */
